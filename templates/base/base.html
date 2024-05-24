@@ -23,7 +23,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" class="bg-gradient-primary">
     {% block side_bar %}
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -271,7 +271,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                        <img class="rounded-circle" src="{% static 'base/img/undraw_profile_1.svg' %}"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
@@ -283,7 +283,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                        <img class="rounded-circle" src="{% static 'base/img/undraw_profile_2.svg' %}"
                                             alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
@@ -295,7 +295,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                        <img class="rounded-circle" src="{% static 'base/img/undraw_profile_3.svg' %}"
                                             alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
@@ -410,7 +410,10 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <form method="post" action="{% url 'bases:logout' %}">
+                        {% csrf_token %}
+                        <button class="btn btn-primary" type="submit">Salir</button>
+                    </form>
                 </div>
             </div>
         </div>
