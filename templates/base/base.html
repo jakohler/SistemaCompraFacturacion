@@ -24,6 +24,9 @@
     <!-- Custom styles for this page -->
    <link href="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.css'%}" rel="stylesheet">
 
+    <!-- jQuery Confirm -->
+    <link rel="stylesheet" href="{% static 'base/vendor/jquery_confirm/jquery-confirm.min.css' %}">
+
 </head>
 
 <body id="page-top" class="bg-gradient-primary">
@@ -75,6 +78,9 @@
                         <a class="collapse-item" href="{% url 'inv:marca_list' %}">Marca</a>
                         <a class="collapse-item" href="{% url 'inv:um_list' %}">Unidad Medida</a>
                         <a class="collapse-item" href="{% url 'inv:producto_list' %}">Productos</a>
+
+                        <h6 class="collapse-header">Catalogos de Compras:</h6>
+                        <a class="collapse-item" href="{% url 'cmp:proveedor_list' %}">Proveedor</a>
                     </div>
                 </div>
             </li>
@@ -440,6 +446,8 @@
     <script src="{% static 'base/vendor/datatables/jquery.dataTables.min.js'%}"></script>
     <script src="{% static 'base/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
 
+    <script src="{% static 'base/vendor/jquery_confirm/jquery-confirm.min.js' %}"></script>
+
     {% block control_modal%}
         <script>
             function abrir_modal(url)
@@ -461,25 +469,25 @@
             return false;
             }
 
-            // function mensaje(msg,color='green')
-            // {
-            // if (color=="success")
-            // {
-            //     color="green";
-            // }
-            // if (color=="error")
-            // {
-            //     color="red";
-            // }
+            function mensaje(msg,color='green')
+            {
+            if (color=="success")
+            {
+                color="green";
+            }
+            if (color=="error")
+            {
+                color="red";
+            }
 
 
-            // $.alert({
-            //     title:'',
-            //     theme:'material',
-            //     type:color,
-            //     content:msg
-            // });
-            // }
+            $.alert({
+                title:'',
+                theme:'material',
+                type:color,
+                content:msg
+            });
+            }
 
             // {% if messages %}
             // {% for message in messages %}
