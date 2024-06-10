@@ -215,3 +215,7 @@ def facturas(request,id=None):
         return redirect("fac:factura_edit",id=id)
 
     return render(request,template_name,contexto)
+
+
+class ProductoView(inv.ProductoView):
+    template_name="fac/buscar_producto.html" 
