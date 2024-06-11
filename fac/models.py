@@ -88,3 +88,30 @@ class FacturaDet(ClaseModelo2):
         permissions = [
             ('sup_caja_facturadet','Permisos de Supervisor de Caja Detalle')
         ]
+
+@receiver(post_save, sender=FacturaDet)
+def detalle_fac_guardar(sender,instance,**kwargs):
+    factura_id = instance.factura.id
+    producto_id = instance.producto.id
+
+    enc = FacturaEnc.objects.get(pk=factura_id)
+    if enc:
+        sub_total = FacturaDet.objects \
+            .filter(factura=factura_id) \
+            .aggregate(sub_total=Sum('sub_total')) \
+            .get('sub_total',0.00)
+        
+        descuento = FacturaDet.objects \
+            .filter(factura=factura_id) \
+            .aggregate(descuento=Sum('descuento')) \
+            .get('descuento',0.00)
+        
+        enc.sub_total = sub_total
+        enc.descuento = descuento
+        enc.save()
+
+    prod=Producto.objects.filter(pk=producto_id).first()
+    if prod:
+        cantidad = int(prod.existencia) - int(instance.cantidad)
+        prod.existencia = cantidad
+        prod.save()
