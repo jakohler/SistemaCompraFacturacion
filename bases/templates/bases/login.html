@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-
+{% load static %}
 {% block side_bar%}{% endblock %}
 {% block top_bar %}{% endblock %}
 {% block page_content %}{% endblock %}
@@ -16,7 +16,9 @@
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
-                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                        <div class="col-lg-6 d-none d-lg-block">
+                            <img class="rounded-circle" src="{% static 'base/img/login.jpg' %}">
+                        </div>
                         <div class="col-lg-6">
                             <div class="p-5">
                                 <div class="text-center">
